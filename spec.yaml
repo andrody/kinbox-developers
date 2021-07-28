@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   description: |
   
-    # Integrando com o Kinbox
+    # Integrando com o Kinbox (v1)
     Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
 
     # Autenticação
