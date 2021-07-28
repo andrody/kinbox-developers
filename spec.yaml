@@ -1,8 +1,28 @@
 swagger: '2.0'
 info:
-  version: '1.0'
-  title: Kinbox Public API
-  contact: {}
+  description: |
+  
+    # Integrando com o Kinbox
+    Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
+
+    # Autenticação
+    Em todas as rotas autenticadas você precisar passar a chave **token** como um parâmetro de url. Por exemplo: `https://api.kinbox.com.br/api/integrations/chat/send?token=xxx`.
+    
+    Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
+
+  version: 1.0.0
+  title: Kinbox API
+  termsOfService: 'https://www.kinbox.com.br/terms'
+  contact:
+    name: Contato
+    email: contato@kinbox.com.br
+  x-logo:
+    url: 'https://raw.githubusercontent.com/kinboxapp/kinbox-developers/master/logo.svg'
+    altText: Kinbox logo
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    
 host: example.com
 basePath: /integrations/chat
 schemes:
@@ -78,7 +98,7 @@ definitions:
     example:
       hidden: false
       message: mensagem de teste
-      to: 558599253056@c.us
+      to: 558599253056
       channelId: 103
       callOptions:
         setGroupId: 10
@@ -87,13 +107,17 @@ definitions:
     properties:
       hidden:
         type: boolean
+        description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
       message:
         type: string
+        description: "Mensagem de texto a ser enviada."
       to:
         type: string
+        description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885555'"
       channelId:
         type: integer
         format: int32
+        description: "ID do canal de WhatsApp no Kinbox"
       callOptions:
         $ref: '#/definitions/CallOptions'
     required:
@@ -101,7 +125,6 @@ definitions:
     - message
     - to
     - channelId
-    - callOptions
   CallOptions:
     title: CallOptions
     example:
@@ -112,12 +135,22 @@ definitions:
       setGroupId:
         type: integer
         format: int32
+        description: 'Seta o ID do grupo'
       execAutoAttributionId:
         type: integer
         format: int32
-    required:
-    - setGroupId
-    - execAutoAttributionId
+        description: 'ID da atribuição automática a ser executada'
+      setTagIds:
+        type: array
+        items: 
+          format: int32
+        description: 'IDs de Tags pra associar ao atendimento'
+      setEmailAttribution:
+        type: string
+        description: 'Email do operador a atribuir o atendimento'
+      setAnnotation:
+        type: string
+        description: 'Setar anotação'
   Send:
     title: Send
     example:
