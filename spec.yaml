@@ -1,165 +1,186 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  description: |
-  
-    # Integrando com o Kinbox (v1)
-    Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
+    description: |
 
-    # Autenticação
-    Em todas as rotas autenticadas você precisar passar a chave **token** como um parâmetro de url. Por exemplo: `https://api.kinbox.com.br/api/integrations/chat/send?token=xxx`.
-    
-    Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
+        # Integrando com o Kinbox (v1)
+        Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
 
-  version: 1.0.0
-  title: Kinbox API
-  termsOfService: 'https://www.kinbox.com.br/terms'
-  contact:
-    name: Contato
-    email: contato@kinbox.com.br
-  x-logo:
-    url: 'https://raw.githubusercontent.com/kinboxapp/kinbox-developers/master/logo.svg'
-    altText: Kinbox logo
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-    
+        # Autenticação
+        Em todas as rotas autenticadas você precisar passar a chave **token** como um parâmetro de url. Por exemplo: `https://api.kinbox.com.br/api/integrations/chat/send?token=xxx`.
+
+        Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
+
+    version: 1.0.0
+    title: Kinbox API
+    termsOfService: "https://www.kinbox.com.br/terms"
+    contact:
+        name: Contato
+        email: contato@kinbox.com.br
+    x-logo:
+        url: "https://raw.githubusercontent.com/kinboxapp/kinbox-developers/master/logo.svg"
+        altText: Kinbox logo
+    license:
+        name: Apache 2.0
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
 host: example.com
 basePath: /integrations/chat
 schemes:
-- http
+    - http
 consumes:
-- application/json
+    - application/json
 produces:
-- application/json
+    - application/json
 paths:
-  /send:
-    post:
-      summary: Send
-      tags:
-      - Chat
-      operationId: Send
-      deprecated: false
-      produces:
-      - application/json; charset=utf-8
-      parameters:
-      - name: token
-        in: query
-        required: true
-        type: string
-        description: ''
-      - name: Body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/SendRequest'
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Send'
-          examples:
-            application/json; charset=utf-8:
-              queued: true
-          headers:
-            X-Powered-By:
-              type: string
-              default: Express
-            Access-Control-Allow-Origin:
-              type: string
-              default: '*'
-            X-RateLimit-Limit:
-              type: string
-              default: '20'
-            X-RateLimit-Remaining:
-              type: string
-              default: '19'
-            Date:
-              type: string
-              default: Wed, 07 Jul 2021 23:30:19 GMT
-            X-RateLimit-Reset:
-              type: string
-              default: '1625700667'
-            Content-Length:
-              type: string
-              default: '15'
-            ETag:
-              type: string
-              default: W/"f-iHWqDaYaObjmJUURGp5T7TD4nfM"
-            Vary:
-              type: string
-              default: Accept-Encoding
-            Connection:
-              type: string
-              default: keep-alive
+    /send:
+        post:
+            summary: Send
+            tags:
+                - Chat
+            operationId: Send
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: token
+                  in: query
+                  required: true
+                  type: string
+                  description: ""
+                - name: Body
+                  in: body
+                  required: true
+                  description: ""
+                  schema:
+                      $ref: "#/definitions/SendRequest"
+            responses:
+                "200":
+                    description: OK
+                    schema:
+                        $ref: "#/definitions/Send"
+                    examples:
+                        application/json; charset=utf-8:
+                            queued: true
+                    headers:
+                        X-Powered-By:
+                            type: string
+                            default: Express
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        X-RateLimit-Limit:
+                            type: string
+                            default: "20"
+                        X-RateLimit-Remaining:
+                            type: string
+                            default: "19"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        X-RateLimit-Reset:
+                            type: string
+                            default: "1625700667"
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        ETag:
+                            type: string
+                            default: W/"f-iHWqDaYaObjmJUURGp5T7TD4nfM"
+                        Vary:
+                            type: string
+                            default: Accept-Encoding
+                        Connection:
+                            type: string
+                            default: keep-alive
 definitions:
-  SendRequest:
-    title: SendRequest
-    example:
-      hidden: false
-      message: mensagem de teste
-      to: 558599253056
-      channelId: 103
-      callOptions:
-        setGroupId: 10
-        execAutoAttributionId: 8
-    type: object
-    properties:
-      hidden:
-        type: boolean
-        description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
-      message:
-        type: string
-        description: "Mensagem de texto a ser enviada."
-      to:
-        type: string
-        description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885555'"
-      channelId:
-        type: integer
-        format: int32
-        description: "ID do canal de WhatsApp no Kinbox"
-      callOptions:
-        $ref: '#/definitions/CallOptions'
-    required:
-    - hidden
-    - message
-    - to
-    - channelId
-  CallOptions:
-    title: CallOptions
-    example:
-      setGroupId: 10
-      execAutoAttributionId: 8
-    type: object
-    properties:
-      setGroupId:
-        type: integer
-        format: int32
-        description: 'Seta o ID do grupo'
-      execAutoAttributionId:
-        type: integer
-        format: int32
-        description: 'ID da atribuição automática a ser executada'
-      setTagIds:
-        type: array
-        items: 
-          format: int32
-        description: 'IDs de Tags pra associar ao atendimento'
-      setEmailAttribution:
-        type: string
-        description: 'Email do operador a atribuir o atendimento'
-      setAnnotation:
-        type: string
-        description: 'Setar anotação'
-  Send:
-    title: Send
-    example:
-      queued: true
-    type: object
-    properties:
-      queued:
-        type: boolean
-    required:
-    - queued
+    SendRequest:
+        title: SendRequest
+        example:
+            hidden: false
+            message: mensagem de teste
+            to: 558599253056
+            channelId: 103
+            callOptions:
+                setGroupId: 10
+                execAutoAttributionId: 8
+            contact:
+                name: "Fulano"
+                email: "fulano@gmail.com"
+        type: object
+        properties:
+            hidden:
+                type: boolean
+                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
+            hidden2:
+                type: boolean
+                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
+            message:
+                type: string
+                description: "Mensagem de texto a ser enviada."
+            to:
+                type: string
+                description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885555'"
+            channelId:
+                type: integer
+                format: int32
+                description: "ID do canal de WhatsApp no Kinbox"
+            callOptions:
+                $ref: "#/definitions/CallOptions"
+            contact:
+                $ref: "#/definitions/Contact"
+        required:
+            - hidden
+            - message
+            - to
+            - channelId
+    CallOptions:
+        title: CallOptions
+        example:
+            setGroupId: 10
+            execAutoAttributionId: 8
+        type: object
+        properties:
+            setGroupId:
+                type: integer
+                format: int32
+                description: "Seta o ID do grupo"
+            execAutoAttributionId:
+                type: integer
+                format: int32
+                description: "ID da atribuição automática a ser executada"
+            setTagIds:
+                type: array
+                items:
+                    format: int32
+                description: "IDs de Tags pra associar ao atendimento"
+            setEmailAttribution:
+                type: string
+                description: "Email do operador a atribuir o atendimento"
+            setAnnotation:
+                type: string
+                description: "Setar anotação"
+    Contact:
+        title: Contact
+        example:
+            name: "Fulano"
+            email: "fulano@gmail.com"
+        type: object
+        properties:
+            name:
+                type: string
+                description: "Nome do contato"
+            email:
+                type: string
+                description: "E-mail do contato"
+    Send:
+        title: Send
+        example:
+            queued: true
+        type: object
+        properties:
+            queued:
+                type: boolean
+        required:
+            - queued
 tags:
-- name: Chat
+    - name: Chat
