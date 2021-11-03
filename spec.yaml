@@ -103,9 +103,9 @@ definitions:
             callOptions:
                 setGroupId: 10
                 execAutoAttributionId: 8
-            contact:
-                name: "Fulano"
-                email: "fulano@gmail.com"
+                contact:
+                    name: "Fulano"
+                    email: "fulano@gmail.com"
         type: object
         properties:
             hidden:
@@ -119,15 +119,15 @@ definitions:
                 description: "Mensagem de texto a ser enviada."
             to:
                 type: string
-                description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885555'"
+                description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885556'"
             channelId:
                 type: integer
                 format: int32
                 description: "ID do canal de WhatsApp no Kinbox"
             callOptions:
                 $ref: "#/definitions/CallOptions"
-            contact:
-                $ref: "#/definitions/Contact"
+                contact:
+                    $ref: "#/definitions/Contact"
         required:
             - hidden
             - message
@@ -159,19 +159,19 @@ definitions:
             setAnnotation:
                 type: string
                 description: "Setar anotação"
-    Contact:
-        title: Contact
-        example:
-            name: "Fulano"
-            email: "fulano@gmail.com"
-        type: object
-        properties:
-            name:
-                type: string
-                description: "Nome do contato"
-            email:
-                type: string
-                description: "E-mail do contato"
+            Contact:
+                title: Contact
+                example:
+                    name: "Fulano"
+                    email: "fulano@gmail.com"
+                type: object
+                properties:
+                    name:
+                        type: string
+                        description: "Nome do contato"
+                    email:
+                        type: string
+                        description: "E-mail do contato"
     Send:
         title: Send
         example:
