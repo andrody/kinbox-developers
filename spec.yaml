@@ -103,6 +103,7 @@ definitions:
             callOptions:
                 setGroupId: 10
                 execAutoAttributionId: 8
+                execBotId: 123
                 contact:
                     name: "Fulano"
                     email: "fulano@gmail.com"
@@ -138,6 +139,7 @@ definitions:
         example:
             setGroupId: 10
             execAutoAttributionId: 8
+            execBotId: 123
         type: object
         properties:
             setGroupId:
@@ -148,6 +150,10 @@ definitions:
                 type: integer
                 format: int32
                 description: "ID da atribuição automática a ser executada"
+            execBotId:
+                type: integer
+                format: int32
+                description: "ID do Bot a ser executado"
             setTagIds:
                 type: array
                 items:
