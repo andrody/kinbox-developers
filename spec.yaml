@@ -95,7 +95,7 @@ paths:
 
     /v2/customers:
         post:
-            summary: Create Customer
+            summary: Cria um Contato. Telefone ou e-mail é obrigatório (qualquer um dos dois)
             tags:
                 - Customers
             operationId: CreateCustomer
@@ -239,6 +239,50 @@ definitions:
                     email:
                         type: string
                         description: "E-mail do contato"
+    CustomFields:
+        title: CustomFields
+        example:
+            setGroupId: 10
+            execAutoAttributionId: 8
+            execBotId: 123
+        type: object
+        properties:
+            setGroupId:
+                type: integer
+                format: int32
+                description: "Seta o ID do grupo"
+            execAutoAttributionId:
+                type: integer
+                format: int32
+                description: "ID da atribuição automática a ser executada"
+            execBotId:
+                type: integer
+                format: int32
+                description: "ID do Bot a ser executado"
+            setTagIds:
+                type: array
+                items:
+                    format: int32
+                description: "IDs de Tags pra associar ao atendimento"
+            setEmailAttribution:
+                type: string
+                description: "Email do operador a atribuir o atendimento"
+            setAnnotation:
+                type: string
+                description: "Setar anotação"
+            Contact:
+                title: Contact
+                example:
+                    name: "Fulano"
+                    email: "fulano@gmail.com"
+                type: object
+                properties:
+                    name:
+                        type: string
+                        description: "Nome do contato"
+                    email:
+                        type: string
+                        description: "E-mail do contato"
     Send:
         title: Send
         example:
@@ -252,44 +296,28 @@ definitions:
     CreateCustomerRequest:
         title: CreateCustomerRequest
         example:
-            hidden: false
-            message: mensagem de teste
-            to: 558599253056
-            channelId: 103
-            callOptions:
-                setGroupId: 10
-                execAutoAttributionId: 8
-                execBotId: 123
-                contact:
-                    name: "Fulano"
-                    email: "fulano@gmail.com"
+            phone: "5585911112222"
+            name: "Fulano de Tal"
+            email: "teste@gmail.com"
+            customFields:
+                idade: "23"
+                cpf: "00011122235"
         type: object
         properties:
-            hidden:
-                type: boolean
-                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
-            hidden2:
-                type: boolean
-                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
-            message:
+            phone:
                 type: string
-                description: "Mensagem de texto a ser enviada."
-            to:
+                description: "Número do telefone do contato com código do país e DDD"
+            name:
                 type: string
-                description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885556'"
-            channelId:
-                type: integer
-                format: int32
-                description: "ID do canal de WhatsApp no Kinbox"
-            callOptions:
-                $ref: "#/definitions/CallOptions"
-                contact:
-                    $ref: "#/definitions/Contact"
+                description: "Nome do contato"
+            email:
+                type: string
+                description: "E-mail do contato"
+            customFields:
+                $ref: "#/definitions/CustomFields"
         required:
-            - hidden
-            - message
-            - to
-            - channelId
+            - phone
+            - email
 tags:
     - name: Chat
     - name: Customers
