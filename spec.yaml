@@ -106,7 +106,7 @@ paths:
                 - application/json; charset=utf-8
             parameters:
                 - name: token
-                  in: query
+                  in: header
                   required: true
                   type: string
                   description: ""
