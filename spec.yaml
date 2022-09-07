@@ -23,10 +23,10 @@ info:
         name: Apache 2.0
         url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 
-host: https://api.kinbox.com.br
+host: api.kinbox.com.br
 basePath: /api
 schemes:
-    - http
+    - https
 consumes:
     - application/json
 produces:
