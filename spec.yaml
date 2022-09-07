@@ -120,10 +120,10 @@ paths:
                 "200":
                     description: OK
                     schema:
-                        $ref: "#/definitions/Send"
+                        $ref: "#/definitions/CreateCustomerResponseSchema"
                     examples:
                         application/json; charset=utf-8:
-                            queued: true
+                            id: "1012"
                     headers:
                         X-Powered-By:
                             type: string
@@ -264,6 +264,16 @@ definitions:
                 type: boolean
         required:
             - queued
+    CreateCustomerResponseSchema:
+        title: Criar Contato
+        example:
+            id: "1011"
+        type: object
+        properties:
+            id:
+                type: string
+        required:
+            - id
     CreateCustomerRequest:
         title: CreateCustomerRequest
         example:
@@ -278,12 +288,12 @@ definitions:
             phone:
                 type: string
                 description: "Número do telefone do contato com código do país e DDD"
-            name:
-                type: string
-                description: "Nome do contato"
             email:
                 type: string
                 description: "E-mail do contato"
+            name:
+                type: string
+                description: "Nome do contato"
             customFields:
                 $ref: "#/definitions/CustomFields"
         required:
