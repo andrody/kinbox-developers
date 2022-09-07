@@ -97,7 +97,7 @@ paths:
         post:
             summary: Cria um Contato
             description: |
-                Cria um Contato. Telefone ou e-mail é obrigatório (qualquer um dos dois). O objeto "customFields" deve ser montado utilizando os "placeholders" do campo customizado criado no Kinbox.
+                Cria um Contato. Telefone ou e-mail é obrigatório (qualquer um dos dois). O objeto "customFields" deve ser montado utilizando os "placeholders" (atalhos) dos campos customizados criados no Kinbox.
             tags:
                 - Customers
             operationId: CreateCustomer
