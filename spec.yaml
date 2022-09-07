@@ -95,7 +95,9 @@ paths:
 
     /v2/customers:
         post:
-            summary: Cria um Contato. Telefone ou e-mail é obrigatório (qualquer um dos dois)
+            summary: Cria um Contato
+            description: |
+                Cria um Contato. Telefone ou e-mail é obrigatório (qualquer um dos dois). O objeto "customFields" deve ser montado utilizando os "placeholders" do campo customizado criado no Kinbox.
             tags:
                 - Customers
             operationId: CreateCustomer
