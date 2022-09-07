@@ -105,7 +105,7 @@ paths:
             produces:
                 - application/json; charset=utf-8
             parameters:
-                - name: token
+                - name: Authorization
                   in: header
                   required: true
                   type: string
