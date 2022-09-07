@@ -244,47 +244,16 @@ definitions:
     CustomFields:
         title: CustomFields
         example:
-            setGroupId: 10
-            execAutoAttributionId: 8
-            execBotId: 123
+            idade: "23"
+            cpf: "00011122235"
         type: object
         properties:
-            setGroupId:
-                type: integer
-                format: int32
-                description: "Seta o ID do grupo"
-            execAutoAttributionId:
-                type: integer
-                format: int32
-                description: "ID da atribuição automática a ser executada"
-            execBotId:
-                type: integer
-                format: int32
-                description: "ID do Bot a ser executado"
-            setTagIds:
-                type: array
-                items:
-                    format: int32
-                description: "IDs de Tags pra associar ao atendimento"
-            setEmailAttribution:
+            idade:
                 type: string
-                description: "Email do operador a atribuir o atendimento"
-            setAnnotation:
+                description: "Placeholder (atalho) do campo customizado 'Idade'"
+            cpf:
                 type: string
-                description: "Setar anotação"
-            Contact:
-                title: Contact
-                example:
-                    name: "Fulano"
-                    email: "fulano@gmail.com"
-                type: object
-                properties:
-                    name:
-                        type: string
-                        description: "Nome do contato"
-                    email:
-                        type: string
-                        description: "E-mail do contato"
+                description: "Placeholder (atalho) do campo customizado 'CPF'"
     Send:
         title: Send
         example:
@@ -299,8 +268,8 @@ definitions:
         title: CreateCustomerRequest
         example:
             phone: "5585911112222"
-            name: "Fulano de Tal"
             email: "teste@gmail.com"
+            name: "Fulano de Tal"
             customFields:
                 idade: "23"
                 cpf: "00011122235"
