@@ -62,33 +62,15 @@ paths:
                         application/json; charset=utf-8:
                             queued: true
                     headers:
-                        X-Powered-By:
-                            type: string
-                            default: Express
                         Access-Control-Allow-Origin:
                             type: string
                             default: "*"
-                        X-RateLimit-Limit:
-                            type: string
-                            default: "20"
-                        X-RateLimit-Remaining:
-                            type: string
-                            default: "19"
                         Date:
                             type: string
                             default: Wed, 07 Jul 2021 23:30:19 GMT
-                        X-RateLimit-Reset:
-                            type: string
-                            default: "1625700667"
                         Content-Length:
                             type: string
                             default: "15"
-                        ETag:
-                            type: string
-                            default: W/"f-iHWqDaYaObjmJUURGp5T7TD4nfM"
-                        Vary:
-                            type: string
-                            default: Accept-Encoding
                         Connection:
                             type: string
                             default: keep-alive
@@ -125,33 +107,15 @@ paths:
                         application/json; charset=utf-8:
                             id: "1012"
                     headers:
-                        X-Powered-By:
-                            type: string
-                            default: Express
                         Access-Control-Allow-Origin:
                             type: string
                             default: "*"
-                        X-RateLimit-Limit:
-                            type: string
-                            default: "20"
-                        X-RateLimit-Remaining:
-                            type: string
-                            default: "19"
                         Date:
                             type: string
                             default: Wed, 07 Jul 2021 23:30:19 GMT
-                        X-RateLimit-Reset:
-                            type: string
-                            default: "1625700667"
                         Content-Length:
                             type: string
                             default: "15"
-                        ETag:
-                            type: string
-                            default: W/"f-iHWqDaYaObjmJUURGp5T7TD4nfM"
-                        Vary:
-                            type: string
-                            default: Accept-Encoding
                         Connection:
                             type: string
                             default: keep-alive
