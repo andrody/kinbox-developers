@@ -92,6 +92,67 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
+
+    /v2/customers:
+        post:
+            summary: Create Customer
+            tags:
+                - Customers
+            operationId: CreateCustomer
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: token
+                  in: query
+                  required: true
+                  type: string
+                  description: ""
+                - name: Body
+                  in: body
+                  required: true
+                  description: ""
+                  schema:
+                      $ref: "#/definitions/CreateCustomerRequest"
+            responses:
+                "200":
+                    description: OK
+                    schema:
+                        $ref: "#/definitions/Send"
+                    examples:
+                        application/json; charset=utf-8:
+                            queued: true
+                    headers:
+                        X-Powered-By:
+                            type: string
+                            default: Express
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        X-RateLimit-Limit:
+                            type: string
+                            default: "20"
+                        X-RateLimit-Remaining:
+                            type: string
+                            default: "19"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        X-RateLimit-Reset:
+                            type: string
+                            default: "1625700667"
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        ETag:
+                            type: string
+                            default: W/"f-iHWqDaYaObjmJUURGp5T7TD4nfM"
+                        Vary:
+                            type: string
+                            default: Accept-Encoding
+                        Connection:
+                            type: string
+                            default: keep-alive
 definitions:
     SendRequest:
         title: SendRequest
@@ -188,5 +249,47 @@ definitions:
                 type: boolean
         required:
             - queued
+    CreateCustomerRequest:
+        title: CreateCustomerRequest
+        example:
+            hidden: false
+            message: mensagem de teste
+            to: 558599253056
+            channelId: 103
+            callOptions:
+                setGroupId: 10
+                execAutoAttributionId: 8
+                execBotId: 123
+                contact:
+                    name: "Fulano"
+                    email: "fulano@gmail.com"
+        type: object
+        properties:
+            hidden:
+                type: boolean
+                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
+            hidden2:
+                type: boolean
+                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
+            message:
+                type: string
+                description: "Mensagem de texto a ser enviada."
+            to:
+                type: string
+                description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885556'"
+            channelId:
+                type: integer
+                format: int32
+                description: "ID do canal de WhatsApp no Kinbox"
+            callOptions:
+                $ref: "#/definitions/CallOptions"
+                contact:
+                    $ref: "#/definitions/Contact"
+        required:
+            - hidden
+            - message
+            - to
+            - channelId
 tags:
     - name: Chat
+    - name: Customers
