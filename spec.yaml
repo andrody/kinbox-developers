@@ -139,9 +139,6 @@ definitions:
             hidden:
                 type: boolean
                 description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
-            hidden2:
-                type: boolean
-                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
             message:
                 type: string
                 description: "Mensagem de texto a ser enviada."
