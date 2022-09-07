@@ -23,8 +23,8 @@ info:
         name: Apache 2.0
         url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 
-host: example.com
-basePath: /integrations/chat
+host: https://api.kinbox.com.br
+basePath: /api
 schemes:
     - http
 consumes:
@@ -32,7 +32,7 @@ consumes:
 produces:
     - application/json
 paths:
-    /send:
+    /integrations/chat/send:
         post:
             summary: Send
             tags:
