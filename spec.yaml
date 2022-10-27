@@ -124,7 +124,7 @@ paths:
         post:
             summary: Criar Campanha
             description: |
-                Cria uma campanha cuja execução iniciará a execução na data definida no parâmetro.
+                Cria uma campanha cuja execução iniciará a execução na data definida no parâmetro. O conteúdo da primeira coluna do arquivo de campanha deverá ser necessariamente o número do telefone com DDD. Em caso de arquivo xls, evitar formatações.
             tags:
                 - Campaign
             operationId: CreateCampaign
