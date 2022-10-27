@@ -331,7 +331,7 @@ definitions:
                 description: "ID do canal que irá executar a campanha"
             messageDistributionType:
                 type: string
-                description: "Tipo de texto da campanha. Padrão "fixed"
+                description: "Tipo de texto da campanha. Padrão fixed"
             executionDate:
                 type: string
                 description: "Data e hora para início da execução da campanha"
