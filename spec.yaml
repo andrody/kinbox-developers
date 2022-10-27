@@ -119,6 +119,52 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
+
+    /v2/campaign:
+        post:
+            summary: Criar Campanha
+            description: |
+                Cria uma campanha cuja execução iniciará a execução na data definida no parâmetro.
+            tags:
+                - Campaign
+            operationId: CreateCampaign
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+                - name: Body
+                  in: body
+                  required: true
+                  description: ""
+                  schema:
+                      $ref: "#/definitions/CreateCampaignRequest"
+            responses:
+                "200":
+                    description: OK
+                    schema:
+                        $ref: "#/definitions/CreateCampaignRequest"
+                    examples:
+                        application/json; charset=utf-8:
+                            id: "1012"
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
+
 definitions:
     SendRequest:
         title: SendRequest
@@ -260,6 +306,69 @@ definitions:
         required:
             - phone
             - email
+
+    CreateCampaignRequest:
+        title: CreateCampaignRequest
+        example:
+            name: "Nome da Campanha"
+            workspacePlatformId: "123"
+            name: "Fulano de Tal"
+            messageDistributionType: "fixed"
+            executionDate: "2022-10-27T22:05:20.971Z"
+            chunks: 50
+            timeBetweenChunks: 1800
+            initialTimeBetweenMessages: 30
+            finalTimeBetweenMessages: 60
+            message: "Texto da campanha"
+            file: "form-data"
+            media: "form-data"
+        type: object
+        properties:
+            name:
+                type: string
+                description: "Nome da campanha, apenas para identificação"
+            workspacePlatformId:
+                type: string
+                description: "ID do canal que irá executar a campanha"
+            messageDistributionType:
+                type: string
+                description: "Tipo de texto da campanha. Padrão "fixed"
+            executionDate:
+                type: string
+                description: "Data e hora para início da execução da campanha"
+            chunks:
+                type: number
+                description: "Tamanho do bloco de envio. Define a cada quantos disparos haverá uma pausa."
+            timeBetweenChunks:
+                type: number
+                description: "Define quantos segundos de pausa ocorrerá após cada bloco enviado"
+            initialTimeBetweenMessages:
+                type: number
+                description: "Quantos segundos de pausa entre cada mensagem enviada, no mínimo"
+            finalTimeBetweenMessages:
+                type: number
+                description: "Quantos segundos de pausa entre cada mensagem enviada, no máximo"
+            message:
+                type: string
+                description: "Texto a ser enviado na mensagem"
+            file:
+                type: object
+                description: "Arquivo xls ou csv que contém a lista de números alvos da campanha"
+            media:
+                type: object
+                description: "Arquivo de mídia a ser enviado juntamente com o texto"
+        required:
+            - name
+            - workspacePlatformId
+            - messageDistributionType
+            - executionDate
+            - chunks
+            - timeBetweenChunks
+            - initialTimeBetweenMessages
+            - finalTimeBetweenMessages
+            - message
+            - file
 tags:
     - name: Chat
     - name: Customers
+    - name: Campaign
