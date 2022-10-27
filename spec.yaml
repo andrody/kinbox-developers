@@ -312,7 +312,6 @@ definitions:
         example:
             name: "Nome da Campanha"
             workspacePlatformId: "123"
-            name: "Fulano de Tal"
             messageDistributionType: "fixed"
             executionDate: "2022-10-27T22:05:20.971Z"
             chunks: 50
