@@ -166,6 +166,53 @@ paths:
                             type: string
                             default: keep-alive
 
+    /v2/campachannelsign:
+        post:
+            summary: Consultar canais
+            description: |
+                Consulta os canais disponíveis no ambiente
+            tags:
+                - Channels
+            operationId: GetChannels
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "data": [
+                                    {
+                                        "id": "2",
+                                        "platformId": "2",
+                                        "description": "Aldeia Software Telegram",
+                                        "status": "connected",
+                                    }
+                                ],
+                                "totalCount": 1
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
+
 definitions:
     SendRequest:
         title: SendRequest
