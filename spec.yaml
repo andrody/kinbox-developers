@@ -6,7 +6,7 @@ info:
         Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
 
         # Autenticação
-        Em todas as rotas autenticadas você precisar passar a chave **token** como um parâmetro de url. Por exemplo: `https://api.kinbox.com.br/api/integrations/chat/send?token=xxx`.
+        Em todas as rotas você precisa passar o token no seu ambiente no Header **Authorization** da requisção.
 
         Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
 
@@ -124,7 +124,8 @@ paths:
         post:
             summary: Criar Campanha
             description: |
-                Cria uma campanha. O conteúdo da primeira coluna do arquivo de campanha deverá ser necessariamente o número do telefone com DDD. Em caso de arquivo xls, evitar formatações.
+                Cria uma campanha. O conteúdo da primeira coluna do arquivo de campanha deverá ser necessariamente o número do telefone com DDD. Em caso de arquivo xls, evitar formatações.\n |
+                Atualmente estão disponíveis campanhas para canais de Whatsapp e SMS, a detecção do tipo de campanha é automática, a partir do canal escolhido.
             tags:
                 - Campaign
             operationId: CreateCampaign
@@ -359,12 +360,7 @@ definitions:
         required:
             - name
             - workspacePlatformId
-            - messageDistributionType
             - executionDate
-            - chunks
-            - timeBetweenChunks
-            - initialTimeBetweenMessages
-            - finalTimeBetweenMessages
             - message
             - file
 tags:
