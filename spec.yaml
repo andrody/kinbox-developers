@@ -124,7 +124,7 @@ paths:
         post:
             summary: Criar Campanha
             description: |
-                Cria uma campanha. O conteúdo da primeira coluna do arquivo de campanha deverá ser necessariamente o número do telefone com DDD. Em caso de arquivo xls, evitar formatações.\n |
+                Cria uma campanha. O conteúdo da primeira coluna do arquivo de campanha deverá ser necessariamente o número do telefone com DDD. Em caso de arquivo xls, evitar formatações.\n\n |
                 Atualmente estão disponíveis campanhas para canais de Whatsapp e SMS, a detecção do tipo de campanha é automática, a partir do canal escolhido.
             tags:
                 - Campaign
@@ -400,7 +400,7 @@ definitions:
                 description: "Texto a ser enviado na mensagem"
             file:
                 type: object
-                description: "Arquivo xls ou csv que contém a lista de números alvos da campanha"
+                description: "Link para arquivo xls ou csv que contém a lista de números alvos da campanha"
             media:
                 type: object
                 description: "Arquivo de mídia a ser enviado juntamente com o texto"
