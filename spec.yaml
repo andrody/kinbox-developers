@@ -166,8 +166,8 @@ paths:
                             type: string
                             default: keep-alive
 
-    /v2/campachannelsign:
-        post:
+    /v2/channels:
+        get:
             summary: Consultar canais
             description: |
                 Consulta os canais disponíveis no ambiente
