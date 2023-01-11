@@ -212,6 +212,54 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
+        get:
+            summary: Consultar número
+            description: |
+                Consulta se um número de telefone tem whatsapp
+            tags:
+                - Channels
+            operationId: GetChannelsWhatsapp
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+                - name: phone
+                  in: path
+                  required: true
+                  type: string
+                  description: ""     
+                - name: channelId
+                  in: path
+                  required: true
+                  type: number
+                  description: ""  
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "phone": "558511112222",
+                                "canReceiveMessage": true
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
 
 definitions:
     SendRequest:
