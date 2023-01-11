@@ -212,6 +212,7 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
+    /v2/channels/get-whatsapp:
         get:
             summary: Consultar número
             description: |
@@ -229,12 +230,12 @@ paths:
                   type: string
                   description: ""
                 - name: phone
-                  in: path
+                  in: query
                   required: true
                   type: string
                   description: ""     
                 - name: channelId
-                  in: path
+                  in: query
                   required: true
                   type: number
                   description: ""  
