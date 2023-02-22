@@ -288,13 +288,15 @@ paths:
                     description: OK
                     examples:
                         application/json; charset=utf-8:
-                        [
                             {
-                                "name": "hello_world",
-                                "language": "en_US",
-                                "id": "XXXXXXXXXXXXXXX"
+                                [
+                                    {
+                                        "name": "hello_world",
+                                        "language": "en_US",
+                                        "id": "XXXXXXXXXXXXXXX"
+                                    }
+                                ]
                             }
-                        ]
                     headers:
                         Access-Control-Allow-Origin:
                             type: string
