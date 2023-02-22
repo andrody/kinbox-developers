@@ -261,6 +261,53 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
+    /v2/channels/templates:
+        get:
+            summary: Consultar templates do canal
+            description: |
+                Consultar templates de um canal oficial
+            tags:
+                - Channels
+            operationId: GetChannelsTemplates
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+                - name: workspacePlatformId
+                  in: query
+                  required: true
+                  type: number
+                  description: "ID do canal que está consultado os templates"
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                        [
+                            {
+                                "name": "hello_world",
+                                "language": "en_US",
+                                "id": "XXXXXXXXXXXXXXX"
+                            }
+                        ]
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
 
 definitions:
     SendRequest:
@@ -406,6 +453,69 @@ definitions:
 
     CreateCampaignRequest:
         title: CreateCampaignRequest
+        example:
+            name: "Nome da Campanha"
+            workspacePlatformId: "123"
+            messageDistributionType: "fixed"
+            executionDate: "2022-10-27T22:05:20.971Z"
+            chunks: 50
+            timeBetweenChunks: 1800
+            initialTimeBetweenMessages: 30
+            finalTimeBetweenMessages: 60
+            message: "Texto da campanha"
+            file: "form-data"
+            media: "form-data"
+            template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+        type: object
+        properties:
+            name:
+                type: string
+                description: "Nome da campanha, apenas para identificação"
+            workspacePlatformId:
+                type: string
+                description: "ID do canal que irá executar a campanha"
+            messageDistributionType:
+                type: string
+                description: "Tipo de texto da campanha. Padrão fixed"
+            executionDate:
+                type: string
+                description: "Data e hora para início da execução da campanha"
+            chunks:
+                type: number
+                description: "Tamanho do bloco de envio. Define a cada quantos disparos haverá uma pausa."
+            timeBetweenChunks:
+                type: number
+                description: "Define quantos segundos de pausa ocorrerá após cada bloco enviado"
+            initialTimeBetweenMessages:
+                type: number
+                description: "Quantos segundos de pausa entre cada mensagem enviada, no mínimo"
+            finalTimeBetweenMessages:
+                type: number
+                description: "Quantos segundos de pausa entre cada mensagem enviada, no máximo"
+            message:
+                type: string
+                description: "Texto a ser enviado na mensagem"
+            file:
+                type: object
+                description: "Link para arquivo xls ou csv que contém a lista de números alvos da campanha"
+            media:
+                type: object
+                description: "Arquivo de mídia a ser enviado juntamente com o texto"
+            validateWppNumbers:
+                type: boolean
+                description: "Indica se deve enviar apenas para números de whatsapp válido"
+            template:
+                type: boolean
+                description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
+        required:
+            - name
+            - workspacePlatformId
+            - executionDate
+            - message
+            - file
+
+    GetChannelTemplatesRequest:
+        title: GetChannelTemplatesRequest
         example:
             name: "Nome da Campanha"
             workspacePlatformId: "123"
