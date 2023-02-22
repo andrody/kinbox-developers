@@ -289,7 +289,7 @@ paths:
                     examples:
                         application/json; charset=utf-8:
                             {
-                                [
+                                "data": [
                                     {
                                         "name": "hello_world",
                                         "language": "en_US",
