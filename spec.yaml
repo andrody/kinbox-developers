@@ -282,7 +282,7 @@ paths:
                   in: query
                   required: true
                   type: number
-                  description: "ID do canal que está consultado os templates"
+                  description: "ID do canal que está consultando os templates"
             responses:
                 "200":
                     description: OK
