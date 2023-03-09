@@ -6,7 +6,7 @@ info:
         Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
 
         # Autenticação
-        Em todas as rotas você precisa passar o token no seu ambiente no Header **Authorization** da requisção.
+        Em todas as rotas você precisa passar o token no seu ambiente no header **Authorization** da requisção.
 
         Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
 
