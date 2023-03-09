@@ -42,8 +42,8 @@ paths:
             produces:
                 - application/json; charset=utf-8
             parameters:
-                - name: token
-                  in: query
+                - name: Authorization
+                  in: header
                   required: true
                   type: string
                   description: ""
