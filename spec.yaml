@@ -512,7 +512,7 @@ definitions:
                 description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
             fileColumnMap:
                 type: object
-                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da conula no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
+                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
         required:
             - name
             - workspacePlatformId
@@ -579,7 +579,7 @@ definitions:
                 description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
             fileColumnMap:
                 type: object
-                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da conula no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
+                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
         required:
             - name
             - workspacePlatformId
