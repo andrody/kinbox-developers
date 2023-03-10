@@ -310,7 +310,98 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
-
+    /v2/groups:
+        get:
+            summary: Consultar grupos
+            description: |
+                Consulta os grupos disponíveis no ambiente
+            tags:
+                - Groups
+            operationId: GetGroups
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "data": [
+                                    {
+                                        "id": "56",
+                                        "name": "Grupo 4",
+                                        "users": [
+                                            "2"
+                                        ]
+                                    },
+                                ],
+                                "totalCount": 1
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
+    /v2/groups/:groupId/users/:userId:
+        get:
+            summary: Consultar usuario do grupo
+            description: |
+                Consulta os usuarios do grupo disponíveis no ambiente
+            tags:
+                - GroupsUsers
+            operationId: GetGroupsUsers
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "data": [
+                                    {
+                                        "id": "80",
+                                        "name": "Italo",
+                                        "email": "italo.gomes@kinbox.com.br"
+                                    },
+                                ],
+                                "totalCount": 1
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
 definitions:
     SendRequest:
         title: SendRequest
@@ -590,3 +681,4 @@ tags:
     - name: Chat
     - name: Customers
     - name: Campaign
+    - name: Groups
