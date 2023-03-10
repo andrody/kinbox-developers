@@ -468,6 +468,7 @@ definitions:
             file: "form-data"
             media: "form-data"
             template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+            fileColumnMap: { "groupId": 4 }
         type: object
         properties:
             name:
@@ -507,8 +508,11 @@ definitions:
                 type: boolean
                 description: "Indica se deve enviar apenas para números de whatsapp válido"
             template:
-                type: boolean
+                type: object
                 description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
+            fileColumnMap:
+                type: object
+                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da conula no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
         required:
             - name
             - workspacePlatformId
@@ -531,6 +535,7 @@ definitions:
             file: "form-data"
             media: "form-data"
             template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+            fileColumnMap: { "groupId": 4 }
         type: object
         properties:
             name:
@@ -570,8 +575,11 @@ definitions:
                 type: boolean
                 description: "Indica se deve enviar apenas para números de whatsapp válido"
             template:
-                type: boolean
+                type: object
                 description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
+            fileColumnMap:
+                type: object
+                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da conula no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
         required:
             - name
             - workspacePlatformId
