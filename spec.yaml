@@ -363,7 +363,7 @@ paths:
             description: |
                 Consulta os usuarios do grupo disponíveis no ambiente
             tags:
-                - GroupsUsers
+                - Groups
             operationId: GetGroupsUsers
             deprecated: false
             produces:
