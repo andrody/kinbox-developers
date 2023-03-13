@@ -212,7 +212,7 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
-    /v2/channels/get-whatsapp:
+    /v2/channels/get-whatsapp?phone=xxx&channelId=yyy:
         get:
             summary: Consultar número
             description: |
