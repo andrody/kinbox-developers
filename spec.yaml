@@ -6,7 +6,7 @@ info:
         Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
 
         # Autenticação
-        Em todas as rotas você precisa passar o token no seu ambiente no Header **Authorization** da requisção.
+        Em todas as rotas você precisa passar o token no seu ambiente no header **Authorization** da requisção.
 
         Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
 
@@ -42,8 +42,8 @@ paths:
             produces:
                 - application/json; charset=utf-8
             parameters:
-                - name: token
-                  in: query
+                - name: Authorization
+                  in: header
                   required: true
                   type: string
                   description: ""
@@ -212,7 +212,7 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
-    /v2/channels/get-whatsapp:
+    /v2/channels/get-whatsapp?phone=xxx&channelId=yyy:
         get:
             summary: Consultar número
             description: |
@@ -282,7 +282,7 @@ paths:
                   in: query
                   required: true
                   type: number
-                  description: "ID do canal que está consultado os templates"
+                  description: "ID do canal que está consultando os templates"
             responses:
                 "200":
                     description: OK
@@ -338,7 +338,98 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
-
+    /v2/groups:
+        get:
+            summary: Consultar grupos
+            description: |
+                Consulta os grupos disponíveis no ambiente
+            tags:
+                - Groups
+            operationId: GetGroups
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "data": [
+                                    {
+                                        "id": "56",
+                                        "name": "Grupo 4",
+                                        "users": [
+                                            "2"
+                                        ]
+                                    },
+                                ],
+                                "totalCount": 1
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
+    /v2/groups/:groupId/users/:userId:
+        get:
+            summary: Consultar usuario do grupo
+            description: |
+                Consulta os usuarios do grupo disponíveis no ambiente
+            tags:
+                - Groups
+            operationId: GetGroupsUsers
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "data": [
+                                    {
+                                        "id": "80",
+                                        "name": "Italo",
+                                        "email": "italo.gomes@kinbox.com.br"
+                                    },
+                                ],
+                                "totalCount": 1
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
 definitions:
     SendRequest:
         title: SendRequest
@@ -496,6 +587,7 @@ definitions:
             file: "form-data"
             media: "form-data"
             template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+            fileColumnMap: { "groupId": 4 }
         type: object
         properties:
             name:
@@ -535,8 +627,11 @@ definitions:
                 type: boolean
                 description: "Indica se deve enviar apenas para números de whatsapp válido"
             template:
-                type: boolean
+                type: object
                 description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
+            fileColumnMap:
+                type: object
+                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
         required:
             - name
             - workspacePlatformId
@@ -559,6 +654,7 @@ definitions:
             file: "form-data"
             media: "form-data"
             template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+            fileColumnMap: { "groupId": 4 }
         type: object
         properties:
             name:
@@ -598,8 +694,11 @@ definitions:
                 type: boolean
                 description: "Indica se deve enviar apenas para números de whatsapp válido"
             template:
-                type: boolean
+                type: object
                 description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
+            fileColumnMap:
+                type: object
+                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
         required:
             - name
             - workspacePlatformId
@@ -610,3 +709,4 @@ tags:
     - name: Chat
     - name: Customers
     - name: Campaign
+    - name: Groups
