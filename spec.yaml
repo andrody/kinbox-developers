@@ -290,10 +290,38 @@ paths:
                         application/json; charset=utf-8:
                             {
                                 "data": [
-                                    {
-                                        "name": "hello_world",
-                                        "language": "en_US",
-                                        "id": "XXXXXXXXXXXXXXX"
+                                     {
+                                        "name": "anexo_saque_complementar_cartoes",
+                                        "components": [
+                                            {
+                                                "type": "HEADER",
+                                                "format": "IMAGE",
+                                                "example": {
+                                                    "header_handle": [
+                                                        "https://scontent.whatsapp.net/v/t61.29466-34/328135481_2161959583988786_3949035822679407467_n.jpg?ccb=1-7&_nc_sid=57045b&_nc_ohc=WcqtgKD01Q8AX-JaZON&_nc_ht=scontent.whatsapp.net&edm=AH51TzQEAAAA&oh=01_AdSWfHqXoPaO0XyO54rAn3OgyFCiwAYVmzyFFzpTyak_xQ&oe=64386968"
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "type": "BODY",
+                                                "text": "Olá tudo bem? Nós aqui da HELP {{1}} temos uma informação importantíssima para você. Você sabia que o saldo do SEU CARTÃO BMG já foi atualizado e a partir de agora, um novo saque já poderá ser realizado? É dinheiro rápido e fácil na sua mão!",
+                                                "example": {
+                                                    "body_text": [
+                                                        [
+                                                            "Alegrete"
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "type": "FOOTER",
+                                                "text": "Responda essa mensagem para mais informações."
+                                            }
+                                        ],
+                                        "language": "pt_BR",
+                                        "status": "APPROVED",
+                                        "category": "MARKETING",
+                                        "id": "2161959580655453"
                                     }
                                 ]
                             }
