@@ -170,7 +170,7 @@ paths:
         get:
             summary: Consultar canais
             description: |
-                Consulta os canais disponíveis no ambiente
+                Consulta os canais disponíveis no ambiente. Canais de Whatsapp Oficial têm a propriedade waba_id diferente de nulo.
             tags:
                 - Channels
             operationId: GetChannels
@@ -195,6 +195,7 @@ paths:
                                         "platformId": "2",
                                         "description": "Aldeia Software Telegram",
                                         "status": "connected",
+                                        "waba_id": null
                                     }
                                 ],
                                 "totalCount": 1
