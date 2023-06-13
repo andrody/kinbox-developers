@@ -500,8 +500,8 @@ definitions:
             setAnnotation:
                 type: string
                 description: "Setar anotação"
-            Contact:
-                title: Contact
+            contact:
+                title: contact
                 example:
                     name: "Fulano"
                     email: "fulano@gmail.com"
