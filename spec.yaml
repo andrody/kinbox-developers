@@ -436,6 +436,7 @@ definitions:
         title: SendRequest
         example:
             hidden: false
+            isMedia: false
             message: mensagem de teste
             to: 558599253056
             channelId: 103
@@ -454,6 +455,9 @@ definitions:
             message:
                 type: string
                 description: "Mensagem de texto a ser enviada."
+            isMedia:
+                type: boolean
+                description: "Indica se o texto enviado deve ser processado como arquivo de mídia."
             to:
                 type: string
                 description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885556'"
