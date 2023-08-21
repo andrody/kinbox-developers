@@ -526,8 +526,8 @@ definitions:
                     idade: 40
                 type: object
                 properties:
-                    name:
-                        idade: string
+                    idade:
+                        type: string
                         description: "Idade do contato"
     CustomFields:
         title: CustomFields
