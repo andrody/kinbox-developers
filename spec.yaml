@@ -447,6 +447,8 @@ definitions:
                 contact:
                     name: "Fulano"
                     email: "fulano@gmail.com"
+                customFields:
+                    idade: 23
         type: object
         properties:
             hidden:
@@ -518,6 +520,15 @@ definitions:
                     email:
                         type: string
                         description: "E-mail do contato"
+            customFields:
+                title: customFields
+                example:
+                    idade: 40
+                type: object
+                properties:
+                    name:
+                        idade: string
+                        description: "Idade do contato"
     CustomFields:
         title: CustomFields
         example:
