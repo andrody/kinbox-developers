@@ -449,6 +449,7 @@ definitions:
                     email: "fulano@gmail.com"
                 customFields:
                     idade: 23
+                setTagIds: [123]
         type: object
         properties:
             hidden:
@@ -496,11 +497,6 @@ definitions:
                 type: integer
                 format: int32
                 description: "ID do Bot a ser executado"
-            setTagIds:
-                type: array
-                items:
-                    format: int32
-                description: "IDs de Tags pra associar ao atendimento"
             setEmailAttribution:
                 type: string
                 description: "Email do operador a atribuir o atendimento"
@@ -529,6 +525,12 @@ definitions:
                     idade:
                         type: string
                         description: "Idade do contato"
+            setTagIds:
+                type: array
+                description: "Lista de IDs de tags a serem adicionadas ao contato"
+                items:
+                    type: integer
+                    format: int32
     CustomFields:
         title: CustomFields
         example:
