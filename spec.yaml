@@ -524,7 +524,7 @@ definitions:
                 properties:
                     idade:
                         type: string
-                        description: "Idade do contato"
+                        description: "Valor da propriedade de exemplo"
             setTagIds:
                 type: array
                 description: "Lista de IDs de tags a serem adicionadas ao contato"
