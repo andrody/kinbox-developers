@@ -447,7 +447,7 @@ definitions:
                 contact:
                     name: "Fulano"
                     email: "fulano@gmail.com"
-                customFields:
+                setCustomFields:
                     idade: 23
                 setTagIds: [123]
         type: object
@@ -516,8 +516,8 @@ definitions:
                     email:
                         type: string
                         description: "E-mail do contato"
-            customFields:
-                title: customFields
+            setCustomFields:
+                title: setCustomFields
                 example:
                     idade: 40
                 type: object
