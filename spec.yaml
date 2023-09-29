@@ -586,7 +586,7 @@ definitions:
                 description: "Nome do contato"
             origin:
                 type: string
-                description: "Origem do contato/lead. Caso não seja enviado um, o sistema ussará 'open_api' como padrão"
+                description: "Origem do contato/lead. Caso não seja enviado um o sistema ussará 'open_api' como padrão"
             customFields:
                 $ref: "#/definitions/CustomFields"
         required:
