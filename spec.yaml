@@ -810,7 +810,7 @@ definitions:
         properties:
             queue_status:
                 type: string
-                description: "Status da fila de mensagens, podendo ser: executed, waiting, not_found, error"
+                description: "Status da mensagem na fila, podendo ser: executed, waiting, not_found, error"
         required:
             - id
 
