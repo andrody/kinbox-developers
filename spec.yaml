@@ -508,10 +508,10 @@ paths:
                   type: string
                   description: ""
                 - name: id
-                    in: path
-                    required: true
-                    type: string
-                    description: ""
+                  in: path
+                  required: true
+                  type: string
+                  description: ""
             responses:
                 "200":
                     description: OK
