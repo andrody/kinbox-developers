@@ -452,6 +452,8 @@ paths:
             responses:
                 "200":
                     description: OK
+                    schema:
+                        $ref: "#/definitions/GetQuickPhrasesRequestSchema"
                     examples:
                         application/json; charset=utf-8:
                             {
@@ -710,6 +712,54 @@ definitions:
             fileColumnMap:
                 type: object
                 description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
+        required:
+            - name
+            - workspacePlatformId
+            - executionDate
+            - message
+            - file
+
+    GetQuickPhrasesRequestSchema:
+        title: GetQuickPhrasesRequestSchema
+        example:
+            operatorId: "ID do operador que criou a frase rápida"
+            groupId: "ID do grupo associado à frase rápida"
+            type: "Tipo de frase rápida, podendo ser: text, voice, attachment"
+            attachments: "Lista de anexos da frase rápida quando for do tipo attachment"
+            voice: "Anexo de voz da frase rápida quando for do tipo voice"
+            phrase: "Texto da frase rápida quando for do tipo text"
+            privacy: "Privacidade da frase rápida, podendo ser: public, private, group"
+            tag: "Atalho da frase rápida"
+            createdAt: "Data de criação da frase rápida"
+        type: object
+        properties:
+            operatorId:
+                type: string
+                description: "ID do operador que criou a frase rápida"
+            groupId:
+                type: string
+                description: "ID do grupo associado à frase rápida"
+            type:
+                type: string
+                description: "Tipo de frase rápida, podendo ser: text, voice, attachment"
+            attachments:
+                type: object
+                description: "Lista de anexos da frase rápida quando for do tipo attachment"
+            voice:
+                type: object
+                description: "Anexo de voz da frase rápida quando for do tipo voice"
+            phrase:
+                type: string
+                description: "Texto da frase rápida quando for do tipo text"
+            privacy:
+                type: string
+                description: "Privacidade da frase rápida, podendo ser: public, private, group"
+            tag:
+                type: string
+                description: "Atalho da frase rápida"
+            createdAt:
+                type: string
+                description: "Data de criação da frase rápida"
         required:
             - name
             - workspacePlatformId
