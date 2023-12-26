@@ -490,7 +490,7 @@ paths:
                             type: string
                             default: keep-alive
 
-    /v2/messages-queue:
+    /v2/messages-queue/:id:
         get:
             summary: Consulta status de uma mensagem
             description: |
@@ -507,6 +507,11 @@ paths:
                   required: true
                   type: string
                   description: ""
+                - name: id
+                    in: path
+                    required: true
+                    type: string
+                    description: ""
             responses:
                 "200":
                     description: OK
