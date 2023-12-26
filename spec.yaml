@@ -438,7 +438,7 @@ paths:
             description: |
                 Consulta de frases rápidas
             tags:
-                - QuickPhrases
+                - Quick Phrases
             operationId: GetQuickPhrases
             deprecated: false
             produces:
@@ -475,6 +475,47 @@ paths:
                                     }
                                 ],
                                 "matchCount": 5
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
+
+    /v2/messages-queue:
+        get:
+            summary: Consulta status de uma mensagem
+            description: |
+                Consulta status da fila de mensagens
+            tags:
+                - Messages Queue
+            operationId: GetMessagesQueue
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+            responses:
+                "200":
+                    description: OK
+                    schema:
+                        $ref: "#/definitions/GetMessagesQueueRequestSchema"
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "queue_status": "executed"
                             }
                     headers:
                         Access-Control-Allow-Origin:
@@ -760,12 +801,18 @@ definitions:
             createdAt:
                 type: string
                 description: "Data de criação da frase rápida"
+
+    GetMessagesQueueRequestSchema:
+        title: GetMessagesQueueRequestSchema
+        example:
+            queue_status: "executed"
+        type: object
+        properties:
+            queue_status:
+                type: string
+                description: "Status da fila de mensagens, podendo ser: executed, waiting, not_found, error"
         required:
-            - name
-            - workspacePlatformId
-            - executionDate
-            - message
-            - file
+            - id
 
     GetChannelTemplatesRequest:
         title: GetChannelTemplatesRequest
@@ -835,6 +882,8 @@ definitions:
             - file
 tags:
     - name: Chat
-    - name: Customers
     - name: Campaign
+    - name: Customers
     - name: Groups
+    - name: Messages Queue
+    - name: Quick Phrases
