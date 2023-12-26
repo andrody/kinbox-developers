@@ -431,6 +431,63 @@ paths:
                         Connection:
                             type: string
                             default: keep-alive
+
+    /v2/quick-phrases:
+        get:
+            summary: Consultar frases rápidas
+            description: |
+                Consulta de frases rápidas
+            tags:
+                - QuickPhrases
+            operationId: GetQuickPhrases
+            deprecated: false
+            produces:
+                - application/json; charset=utf-8
+            parameters:
+                - name: Authorization
+                  in: header
+                  required: true
+                  type: string
+                  description: ""
+            responses:
+                "200":
+                    description: OK
+                    examples:
+                        application/json; charset=utf-8:
+                            {
+                                "data": [
+                                    {
+                                        "id": "5",
+                                        "workspaceId": "1",
+                                        "operatorId": "1",
+                                        "groupId": null,
+                                        "type": "text",
+                                        "attachments": [],
+                                        "voice": null,
+                                        "phrase": "teste3",
+                                        "privacy": "public",
+                                        "tag": "teste3",
+                                        "hotkey": null,
+                                        "lastUpdateAt": "2023-12-26T14:55:13.610Z",
+                                        "createdAt": "2023-12-26T14:55:13.610Z"
+                                    }
+                                ],
+                                "matchCount": 5
+                            }
+                    headers:
+                        Access-Control-Allow-Origin:
+                            type: string
+                            default: "*"
+                        Date:
+                            type: string
+                            default: Wed, 07 Jul 2021 23:30:19 GMT
+                        Content-Length:
+                            type: string
+                            default: "15"
+                        Connection:
+                            type: string
+                            default: keep-alive
+
 definitions:
     SendRequest:
         title: SendRequest
