@@ -543,7 +543,7 @@ definitions:
             hidden: false
             isMedia: false
             message: mensagem de teste
-            to: 558599253056
+            to: "5585988887777"
             channelId: 103
             callOptions:
                 setGroupId: 10
