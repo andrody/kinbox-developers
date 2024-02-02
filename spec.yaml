@@ -555,7 +555,10 @@ definitions:
                 setCustomFields:
                     idade: 23
                 setTagIds: [123]
-            template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+            template:
+                id": "712287883441111"
+                name: "disparo_cnc"
+                language": "pt_BR"
         type: object
         properties:
             hidden:
