@@ -10,6 +10,10 @@ info:
 
         Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
 
+        # Endereço da API
+        Nossa API não dispõe de um endereço de IP fixo, as requisições devem ser realizadas para o domínio **api-v1.kinbox.com.br**.\n\n |
+        Exemplo: https://api-v1.kinbox.com.br/integrations/chat/send
+
     version: 1.0.0
     title: Kinbox API
     termsOfService: "https://www.kinbox.com.br/terms"
