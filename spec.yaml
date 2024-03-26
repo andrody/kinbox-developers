@@ -1,906 +1,895 @@
 swagger: "2.0"
 info:
-    description: |
+  description: |
 
-        # Integrando com o Kinbox (v1)
-        Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
+    # Integrando com o Kinbox (v1)
+    Este documento contém a documentação para que você possa usar a API do Kinbox nas suas próprias aplicações. Se você precisar de algum serviço não disponibilizado aqui, entre em contato com nosso suporte que nós podemos ver a viabilidade de disponibilizar para você.
 
-        # Autenticação
-        Em todas as rotas você precisa passar o token no seu ambiente no header **Authorization** da requisção.
+    # Autenticação
+    Em todas as rotas você precisa passar o token no seu ambiente no header **Authorization** da requisção.
 
-        Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
+    Este **token** você obtem indo no seu ambiente do **Kinbox** > **Configurações** > **Integrações** > **API**
 
-        # Endereço da API
-        Nossa API não dispõe de um endereço de IP fixo, as requisições devem ser realizadas para o domínio **api-v1.kinbox.com.br**
-        
-        Exemplo: https://api-v1.kinbox.com.br/integrations/chat/send
+    # Endereço da API
+    Nossa API não dispõe de um endereço de IP fixo, as requisições devem ser realizadas para o domínio **api-v1.kinbox.com.br**
 
-    version: 1.0.0
-    title: Kinbox API
-    termsOfService: "https://www.kinbox.com.br/terms"
-    contact:
-        name: Contato
-        email: contato@kinbox.com.br
-    x-logo:
-        url: "https://raw.githubusercontent.com/kinboxapp/kinbox-developers/master/logo.svg"
-        altText: Kinbox logo
-    license:
-        name: Apache 2.0
-        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    Exemplo: https://api-v1.kinbox.com.br/api/integrations/chat/send
 
-host: api-v1.kinbox.com.br
+  version: 1.0.0
+  title: Kinbox API
+  termsOfService: "https://www.kinbox.com.br/terms"
+  contact:
+    name: Contato
+    email: contato@kinbox.com.br
+  x-logo:
+    url: "https://raw.githubusercontent.com/kinboxapp/kinbox-developers/master/logo.svg"
+    altText: Kinbox logo
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+host: api-v1.kinbox.com.br/api
 basePath: /api
 schemes:
-    - https
+  - https
 consumes:
-    - application/json
+  - application/json
 produces:
-    - application/json
+  - application/json
 paths:
-    /integrations/chat/send:
-        post:
-            summary: Send
-            tags:
-                - Chat
-            operationId: Send
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-                - name: Body
-                  in: body
-                  required: true
-                  description: ""
-                  schema:
-                      $ref: "#/definitions/SendRequest"
-            responses:
-                "200":
-                    description: OK
-                    schema:
-                        $ref: "#/definitions/Send"
-                    examples:
-                        application/json; charset=utf-8:
-                            queued: true
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
+  /integrations/chat/send:
+    post:
+      summary: Send
+      tags:
+        - Chat
+      operationId: Send
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+        - name: Body
+          in: body
+          required: true
+          description: ""
+          schema:
+            $ref: "#/definitions/SendRequest"
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/Send"
+          examples:
+            application/json; charset=utf-8:
+              queued: true
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
 
-    /v2/customers:
-        post:
-            summary: Cria um Contato
-            description: |
-                Cria um Contato. Telefone ou e-mail é obrigatório (qualquer um dos dois). O objeto "customFields" deve ser montado utilizando os "placeholders" (atalhos) dos campos customizados criados no Kinbox.
-            tags:
-                - Customers
-            operationId: CreateCustomer
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-                - name: Body
-                  in: body
-                  required: true
-                  description: ""
-                  schema:
-                      $ref: "#/definitions/CreateCustomerRequest"
-            responses:
-                "200":
-                    description: OK
-                    schema:
-                        $ref: "#/definitions/CreateCustomerResponseSchema"
-                    examples:
-                        application/json; charset=utf-8:
-                            id: "1012"
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
+  /v2/customers:
+    post:
+      summary: Cria um Contato
+      description: |
+        Cria um Contato. Telefone ou e-mail é obrigatório (qualquer um dos dois). O objeto "customFields" deve ser montado utilizando os "placeholders" (atalhos) dos campos customizados criados no Kinbox.
+      tags:
+        - Customers
+      operationId: CreateCustomer
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+        - name: Body
+          in: body
+          required: true
+          description: ""
+          schema:
+            $ref: "#/definitions/CreateCustomerRequest"
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/CreateCustomerResponseSchema"
+          examples:
+            application/json; charset=utf-8:
+              id: "1012"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
 
-    /v2/campaign:
-        post:
-            summary: Criar Campanha
-            description: |
-                Cria uma campanha. O conteúdo da primeira coluna do arquivo de campanha deverá ser necessariamente o número do telefone com DDD. Em caso de arquivo xls, evitar formatações.\n\n |
-                Atualmente estão disponíveis campanhas para canais de Whatsapp e SMS, a detecção do tipo de campanha é automática, a partir do canal escolhido.
-            tags:
-                - Campaign
-            operationId: CreateCampaign
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-                - name: Body
-                  in: body
-                  required: true
-                  description: ""
-                  schema:
-                      $ref: "#/definitions/CreateCampaignRequest"
-            responses:
-                "200":
-                    description: OK
-                    schema:
-                        $ref: "#/definitions/CreateCampaignRequest"
-                    examples:
-                        application/json; charset=utf-8:
-                            id: "1012"
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
+  /v2/campaign:
+    post:
+      summary: Criar Campanha
+      description: |
+        Cria uma campanha. O conteúdo da primeira coluna do arquivo de campanha deverá ser necessariamente o número do telefone com DDD. Em caso de arquivo xls, evitar formatações.\n\n |
+        Atualmente estão disponíveis campanhas para canais de Whatsapp e SMS, a detecção do tipo de campanha é automática, a partir do canal escolhido.
+      tags:
+        - Campaign
+      operationId: CreateCampaign
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+        - name: Body
+          in: body
+          required: true
+          description: ""
+          schema:
+            $ref: "#/definitions/CreateCampaignRequest"
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/CreateCampaignRequest"
+          examples:
+            application/json; charset=utf-8:
+              id: "1012"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
 
-    /v2/channels:
-        get:
-            summary: Consultar canais
-            description: |
-                Consulta os canais disponíveis no ambiente. Canais de Whatsapp Oficial têm a propriedade waba_id diferente de nulo.
-            tags:
-                - Channels
-            operationId: GetChannels
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-            responses:
-                "200":
-                    description: OK
-                    examples:
-                        application/json; charset=utf-8:
-                            {
-                                "data": [
-                                    {
-                                        "id": "2",
-                                        "platformId": "2",
-                                        "description": "Aldeia Software Telegram",
-                                        "status": "connected",
-                                        "waba_id": null
-                                    }
-                                ],
-                                "totalCount": 1
-                            }
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
-    /v2/channels/get-whatsapp?phone=xxx&channelId=yyy:
-        get:
-            summary: Consultar número
-            description: |
-                Consulta se um número de telefone tem whatsapp
-            tags:
-                - Channels
-            operationId: GetChannelsWhatsapp
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-                - name: phone
-                  in: query
-                  required: true
-                  type: string
-                  description: ""     
-                - name: channelId
-                  in: query
-                  required: true
-                  type: number
-                  description: ""  
-            responses:
-                "200":
-                    description: OK
-                    examples:
-                        application/json; charset=utf-8:
-                            {
-                                "phone": "558511112222",
-                                "canReceiveMessage": true
-                            }
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
-    /v2/channels/templates:
-        get:
-            summary: Consultar templates do canal
-            description: |
-                Consultar templates de um canal oficial
-            tags:
-                - Channels
-            operationId: GetChannelsTemplates
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-                - name: workspacePlatformId
-                  in: query
-                  required: true
-                  type: number
-                  description: "ID do canal que está consultando os templates"
-            responses:
-                "200":
-                    description: OK
-                    examples:
-                        application/json; charset=utf-8:
-                            {
-                                "data": [
-                                     {
-                                        "name": "anexo_saque_complementar_cartoes",
-                                        "components": [
-                                            {
-                                                "type": "HEADER",
-                                                "format": "IMAGE",
-                                                "example": {
-                                                    "header_handle": [
-                                                        "https://scontent.whatsapp.net/v/t61.29466-34/328135481_2161959583988786_3949035822679407467_n.jpg?ccb=1-7&_nc_sid=57045b&_nc_ohc=WcqtgKD01Q8AX-JaZON&_nc_ht=scontent.whatsapp.net&edm=AH51TzQEAAAA&oh=01_AdSWfHqXoPaO0XyO54rAn3OgyFCiwAYVmzyFFzpTyak_xQ&oe=64386968"
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "BODY",
-                                                "text": "Olá tudo bem? Nós aqui da HELP {{1}} temos uma informação importantíssima para você. Você sabia que o saldo do SEU CARTÃO BMG já foi atualizado e a partir de agora, um novo saque já poderá ser realizado? É dinheiro rápido e fácil na sua mão!",
-                                                "example": {
-                                                    "body_text": [
-                                                        [
-                                                            "Alegrete"
-                                                        ]
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "type": "FOOTER",
-                                                "text": "Responda essa mensagem para mais informações."
-                                            }
-                                        ],
-                                        "language": "pt_BR",
-                                        "status": "APPROVED",
-                                        "category": "MARKETING",
-                                        "id": "2161959580655453"
-                                    }
-                                ]
-                            }
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
-    /v2/groups:
-        get:
-            summary: Consultar grupos
-            description: |
-                Consulta os grupos disponíveis no ambiente
-            tags:
-                - Groups
-            operationId: GetGroups
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-            responses:
-                "200":
-                    description: OK
-                    examples:
-                        application/json; charset=utf-8:
-                            {
-                                "data": [
-                                    {
-                                        "id": "56",
-                                        "name": "Grupo 4",
-                                        "users": [
-                                            "2"
-                                        ]
-                                    },
-                                ],
-                                "totalCount": 1
-                            }
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
-    /v2/groups/:groupId/users/:userId:
-        get:
-            summary: Consultar usuario do grupo
-            description: |
-                Consulta os usuarios do grupo disponíveis no ambiente
-            tags:
-                - Groups
-            operationId: GetGroupsUsers
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-            responses:
-                "200":
-                    description: OK
-                    examples:
-                        application/json; charset=utf-8:
-                            {
-                                "data": [
-                                    {
-                                        "id": "80",
-                                        "name": "Italo",
-                                        "email": "italo.gomes@kinbox.com.br"
-                                    },
-                                ],
-                                "totalCount": 1
-                            }
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
+  /v2/channels:
+    get:
+      summary: Consultar canais
+      description: |
+        Consulta os canais disponíveis no ambiente. Canais de Whatsapp Oficial têm a propriedade waba_id diferente de nulo.
+      tags:
+        - Channels
+      operationId: GetChannels
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+      responses:
+        "200":
+          description: OK
+          examples:
+            application/json; charset=utf-8:
+              {
+                "data":
+                  [
+                    {
+                      "id": "2",
+                      "platformId": "2",
+                      "description": "Aldeia Software Telegram",
+                      "status": "connected",
+                      "waba_id": null,
+                    },
+                  ],
+                "totalCount": 1,
+              }
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
+  /v2/channels/get-whatsapp?phone=xxx&channelId=yyy:
+    get:
+      summary: Consultar número
+      description: |
+        Consulta se um número de telefone tem whatsapp
+      tags:
+        - Channels
+      operationId: GetChannelsWhatsapp
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+        - name: phone
+          in: query
+          required: true
+          type: string
+          description: ""
+        - name: channelId
+          in: query
+          required: true
+          type: number
+          description: ""
+      responses:
+        "200":
+          description: OK
+          examples:
+            application/json; charset=utf-8:
+              { "phone": "558511112222", "canReceiveMessage": true }
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
+  /v2/channels/templates:
+    get:
+      summary: Consultar templates do canal
+      description: |
+        Consultar templates de um canal oficial
+      tags:
+        - Channels
+      operationId: GetChannelsTemplates
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+        - name: workspacePlatformId
+          in: query
+          required: true
+          type: number
+          description: "ID do canal que está consultando os templates"
+      responses:
+        "200":
+          description: OK
+          examples:
+            application/json; charset=utf-8:
+              {
+                "data":
+                  [
+                    {
+                      "name": "anexo_saque_complementar_cartoes",
+                      "components":
+                        [
+                          {
+                            "type": "HEADER",
+                            "format": "IMAGE",
+                            "example":
+                              {
+                                "header_handle":
+                                  [
+                                    "https://scontent.whatsapp.net/v/t61.29466-34/328135481_2161959583988786_3949035822679407467_n.jpg?ccb=1-7&_nc_sid=57045b&_nc_ohc=WcqtgKD01Q8AX-JaZON&_nc_ht=scontent.whatsapp.net&edm=AH51TzQEAAAA&oh=01_AdSWfHqXoPaO0XyO54rAn3OgyFCiwAYVmzyFFzpTyak_xQ&oe=64386968",
+                                  ],
+                              },
+                          },
+                          {
+                            "type": "BODY",
+                            "text": "Olá tudo bem? Nós aqui da HELP {{1}} temos uma informação importantíssima para você. Você sabia que o saldo do SEU CARTÃO BMG já foi atualizado e a partir de agora, um novo saque já poderá ser realizado? É dinheiro rápido e fácil na sua mão!",
+                            "example": { "body_text": [["Alegrete"]] },
+                          },
+                          {
+                            "type": "FOOTER",
+                            "text": "Responda essa mensagem para mais informações.",
+                          },
+                        ],
+                      "language": "pt_BR",
+                      "status": "APPROVED",
+                      "category": "MARKETING",
+                      "id": "2161959580655453",
+                    },
+                  ],
+              }
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
+  /v2/groups:
+    get:
+      summary: Consultar grupos
+      description: |
+        Consulta os grupos disponíveis no ambiente
+      tags:
+        - Groups
+      operationId: GetGroups
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+      responses:
+        "200":
+          description: OK
+          examples:
+            application/json; charset=utf-8:
+              {
+                "data": [{ "id": "56", "name": "Grupo 4", "users": ["2"] }],
+                "totalCount": 1,
+              }
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
+  /v2/groups/:groupId/users/:userId:
+    get:
+      summary: Consultar usuario do grupo
+      description: |
+        Consulta os usuarios do grupo disponíveis no ambiente
+      tags:
+        - Groups
+      operationId: GetGroupsUsers
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+      responses:
+        "200":
+          description: OK
+          examples:
+            application/json; charset=utf-8:
+              {
+                "data":
+                  [
+                    {
+                      "id": "80",
+                      "name": "Italo",
+                      "email": "italo.gomes@kinbox.com.br",
+                    },
+                  ],
+                "totalCount": 1,
+              }
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
 
-    /v2/quick-phrases:
-        get:
-            summary: Consultar frases rápidas
-            description: |
-                Consulta de frases rápidas
-            tags:
-                - Quick Phrases
-            operationId: GetQuickPhrases
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-            responses:
-                "200":
-                    description: OK
-                    schema:
-                        $ref: "#/definitions/GetQuickPhrasesRequestSchema"
-                    examples:
-                        application/json; charset=utf-8:
-                            {
-                                "data": [
-                                    {
-                                        "id": "5",
-                                        "workspaceId": "1",
-                                        "operatorId": "1",
-                                        "groupId": null,
-                                        "type": "text",
-                                        "attachments": [],
-                                        "voice": null,
-                                        "phrase": "teste3",
-                                        "privacy": "public",
-                                        "tag": "teste3",
-                                        "hotkey": null,
-                                        "lastUpdateAt": "2023-12-26T14:55:13.610Z",
-                                        "createdAt": "2023-12-26T14:55:13.610Z"
-                                    }
-                                ],
-                                "matchCount": 5
-                            }
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
+  /v2/quick-phrases:
+    get:
+      summary: Consultar frases rápidas
+      description: |
+        Consulta de frases rápidas
+      tags:
+        - Quick Phrases
+      operationId: GetQuickPhrases
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/GetQuickPhrasesRequestSchema"
+          examples:
+            application/json; charset=utf-8:
+              {
+                "data":
+                  [
+                    {
+                      "id": "5",
+                      "workspaceId": "1",
+                      "operatorId": "1",
+                      "groupId": null,
+                      "type": "text",
+                      "attachments": [],
+                      "voice": null,
+                      "phrase": "teste3",
+                      "privacy": "public",
+                      "tag": "teste3",
+                      "hotkey": null,
+                      "lastUpdateAt": "2023-12-26T14:55:13.610Z",
+                      "createdAt": "2023-12-26T14:55:13.610Z",
+                    },
+                  ],
+                "matchCount": 5,
+              }
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
 
-    /v2/messages/messages-queue/:id:
-        get:
-            summary: Consulta status de uma mensagem
-            description: |
-                Consulta status da fila de mensagens
-            tags:
-                - Messages Queue
-            operationId: GetMessagesQueue
-            deprecated: false
-            produces:
-                - application/json; charset=utf-8
-            parameters:
-                - name: Authorization
-                  in: header
-                  required: true
-                  type: string
-                  description: ""
-                - name: id
-                  in: path
-                  required: true
-                  type: string
-                  description: ""
-            responses:
-                "200":
-                    description: OK
-                    schema:
-                        $ref: "#/definitions/GetMessagesQueueRequestSchema"
-                    examples:
-                        application/json; charset=utf-8:
-                            {
-                                "queue_status": "executed"
-                            }
-                    headers:
-                        Access-Control-Allow-Origin:
-                            type: string
-                            default: "*"
-                        Date:
-                            type: string
-                            default: Wed, 07 Jul 2021 23:30:19 GMT
-                        Content-Length:
-                            type: string
-                            default: "15"
-                        Connection:
-                            type: string
-                            default: keep-alive
+  /v2/messages/messages-queue/:id:
+    get:
+      summary: Consulta status de uma mensagem
+      description: |
+        Consulta status da fila de mensagens
+      tags:
+        - Messages Queue
+      operationId: GetMessagesQueue
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+          description: ""
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ""
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/GetMessagesQueueRequestSchema"
+          examples:
+            application/json; charset=utf-8: { "queue_status": "executed" }
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              default: "*"
+            Date:
+              type: string
+              default: Wed, 07 Jul 2021 23:30:19 GMT
+            Content-Length:
+              type: string
+              default: "15"
+            Connection:
+              type: string
+              default: keep-alive
 
 definitions:
-    SendRequest:
-        title: SendRequest
+  SendRequest:
+    title: SendRequest
+    example:
+      hidden: false
+      isMedia: false
+      message: mensagem de teste
+      to: "5585988887777"
+      channelId: 103
+      callOptions:
+        setGroupId: 10
+        execAutoAttributionId: 8
+        execBotId: 123
+        contact:
+          name: "Fulano"
+          email: "fulano@gmail.com"
+        setCustomFields:
+          idade: 23
+        setTagIds: [123]
+      template:
+        id": "712287883441111"
+        name: "disparo_cnc"
+        language": "pt_BR"
+    type: object
+    properties:
+      hidden:
+        type: boolean
+        description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
+      message:
+        type: string
+        description: "Mensagem de texto a ser enviada."
+      isMedia:
+        type: boolean
+        description: "Indica se o texto enviado deve ser processado como arquivo de mídia."
+      to:
+        type: string
+        description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885556'"
+      channelId:
+        type: integer
+        format: int32
+        description: "ID do canal de WhatsApp no Kinbox"
+      callOptions:
+        $ref: "#/definitions/CallOptions"
+        contact:
+          $ref: "#/definitions/Contact"
+      template:
+        type: object
+        description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias (deve ser obtido via 'Consultar templates do canal')"
+    required:
+      - hidden
+      - message
+      - to
+      - channelId
+  CallOptions:
+    title: CallOptions
+    example:
+      setGroupId: 10
+      execAutoAttributionId: 8
+      execBotId: 123
+    type: object
+    properties:
+      setGroupId:
+        type: integer
+        format: int32
+        description: "Seta o ID do grupo"
+      execAutoAttributionId:
+        type: integer
+        format: int32
+        description: "ID da atribuição automática a ser executada"
+      execBotId:
+        type: integer
+        format: int32
+        description: "ID do Bot a ser executado"
+      setEmailAttribution:
+        type: string
+        description: "Email do operador a atribuir o atendimento"
+      setAnnotation:
+        type: string
+        description: "Setar anotação"
+      contact:
+        title: contact
         example:
-            hidden: false
-            isMedia: false
-            message: mensagem de teste
-            to: "5585988887777"
-            channelId: 103
-            callOptions:
-                setGroupId: 10
-                execAutoAttributionId: 8
-                execBotId: 123
-                contact:
-                    name: "Fulano"
-                    email: "fulano@gmail.com"
-                setCustomFields:
-                    idade: 23
-                setTagIds: [123]
-            template:
-                id": "712287883441111"
-                name: "disparo_cnc"
-                language": "pt_BR"
+          name: "Fulano"
+          email: "fulano@gmail.com"
         type: object
         properties:
-            hidden:
-                type: boolean
-                description: "Indica se a conversa gerada vai aparecer ou não na caixa de entrada dos operadores."
-            message:
-                type: string
-                description: "Mensagem de texto a ser enviada."
-            isMedia:
-                type: boolean
-                description: "Indica se o texto enviado deve ser processado como arquivo de mídia."
-            to:
-                type: string
-                description: "Número do telefone alvo. Recomendamos usar o código do país (55 para o Brasil) e DDD. Exemplo: '551188885556'"
-            channelId:
-                type: integer
-                format: int32
-                description: "ID do canal de WhatsApp no Kinbox"
-            callOptions:
-                $ref: "#/definitions/CallOptions"
-                contact:
-                    $ref: "#/definitions/Contact"
-            template: 
-                type: object
-                description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias (deve ser obtido via 'Consultar templates do canal')"
-        required:
-            - hidden
-            - message
-            - to
-            - channelId
-    CallOptions:
-        title: CallOptions
+          name:
+            type: string
+            description: "Nome do contato"
+          email:
+            type: string
+            description: "E-mail do contato"
+      setCustomFields:
+        title: setCustomFields
         example:
-            setGroupId: 10
-            execAutoAttributionId: 8
-            execBotId: 123
+          idade: 40
         type: object
         properties:
-            setGroupId:
-                type: integer
-                format: int32
-                description: "Seta o ID do grupo"
-            execAutoAttributionId:
-                type: integer
-                format: int32
-                description: "ID da atribuição automática a ser executada"
-            execBotId:
-                type: integer
-                format: int32
-                description: "ID do Bot a ser executado"
-            setEmailAttribution:
-                type: string
-                description: "Email do operador a atribuir o atendimento"
-            setAnnotation:
-                type: string
-                description: "Setar anotação"
-            contact:
-                title: contact
-                example:
-                    name: "Fulano"
-                    email: "fulano@gmail.com"
-                type: object
-                properties:
-                    name:
-                        type: string
-                        description: "Nome do contato"
-                    email:
-                        type: string
-                        description: "E-mail do contato"
-            setCustomFields:
-                title: setCustomFields
-                example:
-                    idade: 40
-                type: object
-                properties:
-                    idade:
-                        type: string
-                        description: "Valor da propriedade de exemplo"
-            setTagIds:
-                type: array
-                description: "Lista de IDs de tags a serem adicionadas ao contato"
-                items:
-                    type: integer
-                    format: int32
-    CustomFields:
-        title: CustomFields
-        example:
-            idade: "23"
-            cpf: "00011122235"
-        type: object
-        properties:
-            idade:
-                type: string
-                description: "Placeholder (atalho) do campo customizado 'Idade'"
-            cpf:
-                type: string
-                description: "Placeholder (atalho) do campo customizado 'CPF'"
-    Send:
-        title: Send
-        example:
-            queued: true
-        type: object
-        properties:
-            queued:
-                type: boolean
-        required:
-            - queued
-    CreateCustomerResponseSchema:
-        title: Criar Contato
-        example:
-            id: "1011"
-        type: object
-        properties:
-            id:
-                type: string
-        required:
-            - id
-    CreateCustomerRequest:
-        title: CreateCustomerRequest
-        example:
-            phone: "5585911112222"
-            email: "teste@gmail.com"
-            name: "Fulano de Tal"
-            customFields:
-                idade: "23"
-                cpf: "00011122235"
-        type: object
-        properties:
-            phone:
-                type: string
-                description: "Número do telefone do contato com código do país e DDD"
-            email:
-                type: string
-                description: "E-mail do contato"
-            name:
-                type: string
-                description: "Nome do contato"
-            origin:
-                type: string
-                description: "Origem do contato/lead. Caso não seja enviado um o sistema ussará 'open_api' como padrão"
-            customFields:
-                $ref: "#/definitions/CustomFields"
-        required:
-            - phone
-            - email
+          idade:
+            type: string
+            description: "Valor da propriedade de exemplo"
+      setTagIds:
+        type: array
+        description: "Lista de IDs de tags a serem adicionadas ao contato"
+        items:
+          type: integer
+          format: int32
+  CustomFields:
+    title: CustomFields
+    example:
+      idade: "23"
+      cpf: "00011122235"
+    type: object
+    properties:
+      idade:
+        type: string
+        description: "Placeholder (atalho) do campo customizado 'Idade'"
+      cpf:
+        type: string
+        description: "Placeholder (atalho) do campo customizado 'CPF'"
+  Send:
+    title: Send
+    example:
+      queued: true
+    type: object
+    properties:
+      queued:
+        type: boolean
+    required:
+      - queued
+  CreateCustomerResponseSchema:
+    title: Criar Contato
+    example:
+      id: "1011"
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+      - id
+  CreateCustomerRequest:
+    title: CreateCustomerRequest
+    example:
+      phone: "5585911112222"
+      email: "teste@gmail.com"
+      name: "Fulano de Tal"
+      customFields:
+        idade: "23"
+        cpf: "00011122235"
+    type: object
+    properties:
+      phone:
+        type: string
+        description: "Número do telefone do contato com código do país e DDD"
+      email:
+        type: string
+        description: "E-mail do contato"
+      name:
+        type: string
+        description: "Nome do contato"
+      origin:
+        type: string
+        description: "Origem do contato/lead. Caso não seja enviado um o sistema ussará 'open_api' como padrão"
+      customFields:
+        $ref: "#/definitions/CustomFields"
+    required:
+      - phone
+      - email
 
-    CreateCampaignRequest:
-        title: CreateCampaignRequest
-        example:
-            name: "Nome da Campanha"
-            workspacePlatformId: "123"
-            messageDistributionType: "fixed"
-            executionDate: "2022-10-27T22:05:20.971Z"
-            chunks: 50
-            timeBetweenChunks: 1800
-            initialTimeBetweenMessages: 30
-            finalTimeBetweenMessages: 60
-            message: "Texto da campanha"
-            file: "form-data"
-            media: "form-data"
-            template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
-            fileColumnMap: { "groupId": 4 }
+  CreateCampaignRequest:
+    title: CreateCampaignRequest
+    example:
+      name: "Nome da Campanha"
+      workspacePlatformId: "123"
+      messageDistributionType: "fixed"
+      executionDate: "2022-10-27T22:05:20.971Z"
+      chunks: 50
+      timeBetweenChunks: 1800
+      initialTimeBetweenMessages: 30
+      finalTimeBetweenMessages: 60
+      message: "Texto da campanha"
+      file: "form-data"
+      media: "form-data"
+      template:
+        { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+      fileColumnMap: { "groupId": 4 }
+    type: object
+    properties:
+      name:
+        type: string
+        description: "Nome da campanha, apenas para identificação"
+      workspacePlatformId:
+        type: string
+        description: "ID do canal que irá executar a campanha"
+      messageDistributionType:
+        type: string
+        description: "Tipo de texto da campanha. Padrão fixed"
+      executionDate:
+        type: string
+        description: "Data e hora para início da execução da campanha"
+      chunks:
+        type: number
+        description: "Tamanho do bloco de envio. Define a cada quantos disparos haverá uma pausa."
+      timeBetweenChunks:
+        type: number
+        description: "Define quantos segundos de pausa ocorrerá após cada bloco enviado"
+      initialTimeBetweenMessages:
+        type: number
+        description: "Quantos segundos de pausa entre cada mensagem enviada, no mínimo"
+      finalTimeBetweenMessages:
+        type: number
+        description: "Quantos segundos de pausa entre cada mensagem enviada, no máximo"
+      message:
+        type: string
+        description: "Texto a ser enviado na mensagem"
+      file:
         type: object
-        properties:
-            name:
-                type: string
-                description: "Nome da campanha, apenas para identificação"
-            workspacePlatformId:
-                type: string
-                description: "ID do canal que irá executar a campanha"
-            messageDistributionType:
-                type: string
-                description: "Tipo de texto da campanha. Padrão fixed"
-            executionDate:
-                type: string
-                description: "Data e hora para início da execução da campanha"
-            chunks:
-                type: number
-                description: "Tamanho do bloco de envio. Define a cada quantos disparos haverá uma pausa."
-            timeBetweenChunks:
-                type: number
-                description: "Define quantos segundos de pausa ocorrerá após cada bloco enviado"
-            initialTimeBetweenMessages:
-                type: number
-                description: "Quantos segundos de pausa entre cada mensagem enviada, no mínimo"
-            finalTimeBetweenMessages:
-                type: number
-                description: "Quantos segundos de pausa entre cada mensagem enviada, no máximo"
-            message:
-                type: string
-                description: "Texto a ser enviado na mensagem"
-            file:
-                type: object
-                description: "Link para arquivo xls ou csv que contém a lista de números alvos da campanha"
-            media:
-                type: object
-                description: "Arquivo de mídia a ser enviado juntamente com o texto"
-            validateWppNumbers:
-                type: boolean
-                description: "Indica se deve enviar apenas para números de whatsapp válido"
-            template:
-                type: object
-                description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
-            fileColumnMap:
-                type: object
-                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
-        required:
-            - name
-            - workspacePlatformId
-            - executionDate
-            - message
-            - file
+        description: "Link para arquivo xls ou csv que contém a lista de números alvos da campanha"
+      media:
+        type: object
+        description: "Arquivo de mídia a ser enviado juntamente com o texto"
+      validateWppNumbers:
+        type: boolean
+        description: "Indica se deve enviar apenas para números de whatsapp válido"
+      template:
+        type: object
+        description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
+      fileColumnMap:
+        type: object
+        description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
+    required:
+      - name
+      - workspacePlatformId
+      - executionDate
+      - message
+      - file
 
-    GetQuickPhrasesRequestSchema:
-        title: GetQuickPhrasesRequestSchema
-        example:
-            operatorId: "ID do operador que criou a frase rápida"
-            groupId: "ID do grupo associado à frase rápida"
-            type: "Tipo de frase rápida, podendo ser: text, voice, attachment"
-            attachments: "Lista de anexos da frase rápida quando for do tipo attachment"
-            voice: "Anexo de voz da frase rápida quando for do tipo voice"
-            phrase: "Texto da frase rápida quando for do tipo text"
-            privacy: "Privacidade da frase rápida, podendo ser: public, private, group"
-            tag: "Atalho da frase rápida"
-            createdAt: "Data de criação da frase rápida"
+  GetQuickPhrasesRequestSchema:
+    title: GetQuickPhrasesRequestSchema
+    example:
+      operatorId: "ID do operador que criou a frase rápida"
+      groupId: "ID do grupo associado à frase rápida"
+      type: "Tipo de frase rápida, podendo ser: text, voice, attachment"
+      attachments: "Lista de anexos da frase rápida quando for do tipo attachment"
+      voice: "Anexo de voz da frase rápida quando for do tipo voice"
+      phrase: "Texto da frase rápida quando for do tipo text"
+      privacy: "Privacidade da frase rápida, podendo ser: public, private, group"
+      tag: "Atalho da frase rápida"
+      createdAt: "Data de criação da frase rápida"
+    type: object
+    properties:
+      operatorId:
+        type: string
+        description: "ID do operador que criou a frase rápida"
+      groupId:
+        type: string
+        description: "ID do grupo associado à frase rápida"
+      type:
+        type: string
+        description: "Tipo de frase rápida, podendo ser: text, voice, attachment"
+      attachments:
         type: object
-        properties:
-            operatorId:
-                type: string
-                description: "ID do operador que criou a frase rápida"
-            groupId:
-                type: string
-                description: "ID do grupo associado à frase rápida"
-            type:
-                type: string
-                description: "Tipo de frase rápida, podendo ser: text, voice, attachment"
-            attachments:
-                type: object
-                description: "Lista de anexos da frase rápida quando for do tipo attachment"
-            voice:
-                type: object
-                description: "Anexo de voz da frase rápida quando for do tipo voice"
-            phrase:
-                type: string
-                description: "Texto da frase rápida quando for do tipo text"
-            privacy:
-                type: string
-                description: "Privacidade da frase rápida, podendo ser: public, private, group"
-            tag:
-                type: string
-                description: "Atalho da frase rápida"
-            createdAt:
-                type: string
-                description: "Data de criação da frase rápida"
+        description: "Lista de anexos da frase rápida quando for do tipo attachment"
+      voice:
+        type: object
+        description: "Anexo de voz da frase rápida quando for do tipo voice"
+      phrase:
+        type: string
+        description: "Texto da frase rápida quando for do tipo text"
+      privacy:
+        type: string
+        description: "Privacidade da frase rápida, podendo ser: public, private, group"
+      tag:
+        type: string
+        description: "Atalho da frase rápida"
+      createdAt:
+        type: string
+        description: "Data de criação da frase rápida"
 
-    GetMessagesQueueRequestSchema:
-        title: GetMessagesQueueRequestSchema
-        example:
-            queue_status: "executed"
-        type: object
-        properties:
-            queue_status:
-                type: string
-                description: "Status da mensagem na fila, podendo ser: executed, waiting, not_found, error"
-        required:
-            - id
+  GetMessagesQueueRequestSchema:
+    title: GetMessagesQueueRequestSchema
+    example:
+      queue_status: "executed"
+    type: object
+    properties:
+      queue_status:
+        type: string
+        description: "Status da mensagem na fila, podendo ser: executed, waiting, not_found, error"
+    required:
+      - id
 
-    GetChannelTemplatesRequest:
-        title: GetChannelTemplatesRequest
-        example:
-            name: "Nome da Campanha"
-            workspacePlatformId: "123"
-            messageDistributionType: "fixed"
-            executionDate: "2022-10-27T22:05:20.971Z"
-            chunks: 50
-            timeBetweenChunks: 1800
-            initialTimeBetweenMessages: 30
-            finalTimeBetweenMessages: 60
-            message: "Texto da campanha"
-            file: "form-data"
-            media: "form-data"
-            template: { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
-            fileColumnMap: { "groupId": 4 }
+  GetChannelTemplatesRequest:
+    title: GetChannelTemplatesRequest
+    example:
+      name: "Nome da Campanha"
+      workspacePlatformId: "123"
+      messageDistributionType: "fixed"
+      executionDate: "2022-10-27T22:05:20.971Z"
+      chunks: 50
+      timeBetweenChunks: 1800
+      initialTimeBetweenMessages: 30
+      finalTimeBetweenMessages: 60
+      message: "Texto da campanha"
+      file: "form-data"
+      media: "form-data"
+      template:
+        { "id": "712287883444142", "name": "disparo_cnc", "language": "pt_BR" }
+      fileColumnMap: { "groupId": 4 }
+    type: object
+    properties:
+      name:
+        type: string
+        description: "Nome da campanha, apenas para identificação"
+      workspacePlatformId:
+        type: string
+        description: "ID do canal que irá executar a campanha"
+      messageDistributionType:
+        type: string
+        description: "Tipo de texto da campanha. Padrão fixed"
+      executionDate:
+        type: string
+        description: "Data e hora para início da execução da campanha"
+      chunks:
+        type: number
+        description: "Tamanho do bloco de envio. Define a cada quantos disparos haverá uma pausa."
+      timeBetweenChunks:
+        type: number
+        description: "Define quantos segundos de pausa ocorrerá após cada bloco enviado"
+      initialTimeBetweenMessages:
+        type: number
+        description: "Quantos segundos de pausa entre cada mensagem enviada, no mínimo"
+      finalTimeBetweenMessages:
+        type: number
+        description: "Quantos segundos de pausa entre cada mensagem enviada, no máximo"
+      message:
+        type: string
+        description: "Texto a ser enviado na mensagem"
+      file:
         type: object
-        properties:
-            name:
-                type: string
-                description: "Nome da campanha, apenas para identificação"
-            workspacePlatformId:
-                type: string
-                description: "ID do canal que irá executar a campanha"
-            messageDistributionType:
-                type: string
-                description: "Tipo de texto da campanha. Padrão fixed"
-            executionDate:
-                type: string
-                description: "Data e hora para início da execução da campanha"
-            chunks:
-                type: number
-                description: "Tamanho do bloco de envio. Define a cada quantos disparos haverá uma pausa."
-            timeBetweenChunks:
-                type: number
-                description: "Define quantos segundos de pausa ocorrerá após cada bloco enviado"
-            initialTimeBetweenMessages:
-                type: number
-                description: "Quantos segundos de pausa entre cada mensagem enviada, no mínimo"
-            finalTimeBetweenMessages:
-                type: number
-                description: "Quantos segundos de pausa entre cada mensagem enviada, no máximo"
-            message:
-                type: string
-                description: "Texto a ser enviado na mensagem"
-            file:
-                type: object
-                description: "Link para arquivo xls ou csv que contém a lista de números alvos da campanha"
-            media:
-                type: object
-                description: "Arquivo de mídia a ser enviado juntamente com o texto"
-            validateWppNumbers:
-                type: boolean
-                description: "Indica se deve enviar apenas para números de whatsapp válido"
-            template:
-                type: object
-                description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
-            fileColumnMap:
-                type: object
-                description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
-        required:
-            - name
-            - workspacePlatformId
-            - executionDate
-            - message
-            - file
+        description: "Link para arquivo xls ou csv que contém a lista de números alvos da campanha"
+      media:
+        type: object
+        description: "Arquivo de mídia a ser enviado juntamente com o texto"
+      validateWppNumbers:
+        type: boolean
+        description: "Indica se deve enviar apenas para números de whatsapp válido"
+      template:
+        type: object
+        description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias"
+      fileColumnMap:
+        type: object
+        description: "Contém um mapa dos dados lógicos enviados nas colunas do arquivo de campanha. O valor numérico de cada item representa o índice da coluna no arquivo, iniciando pelo valor 1 (primeira coluna é o índice 1)"
+    required:
+      - name
+      - workspacePlatformId
+      - executionDate
+      - message
+      - file
 tags:
-    - name: Chat
-    - name: Campaign
-    - name: Customers
-    - name: Groups
-    - name: Messages Queue
-    - name: Quick Phrases
+  - name: Chat
+  - name: Campaign
+  - name: Customers
+  - name: Groups
+  - name: Messages Queue
+  - name: Quick Phrases
