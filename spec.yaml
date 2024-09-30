@@ -551,6 +551,7 @@ definitions:
         id": "712287883441111"
         name: "disparo_cnc"
         language": "pt_BR"
+      executeAt: "2020-01-01T15:04:41.004Z"
     type: object
     properties:
       hidden:
@@ -576,6 +577,9 @@ definitions:
       template:
         type: object
         description: "Template de Whatsapp Oficial. ID, Name e Language são propriedades obrigatórias (deve ser obtido via 'Consultar templates do canal')"
+      executeAt:
+        type: string
+        description: "Data e hora para início da execução, no formato ISO 8601. Exemplo: '2020-01-01T15:04:41.004Z'"
     required:
       - hidden
       - message
